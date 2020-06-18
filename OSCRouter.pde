@@ -17,9 +17,9 @@ int myColor6 = color(0, 0, 0);
 int myColor7 = color(0, 0, 0);
 int myColor8 = color(0, 0, 0);
 
-int saturacion1 = 9;  // -180 +180 AZUMUTH
-int saturacion2 = 9; //  -90 / +90 PITCH
-int saturacion3 = 9; // -180 / +180 ROLL
+int saturacion1 = 9;
+int saturacion2 = 9;
+int saturacion3 = 9; 
 int saturacion4 = 9; 
 int saturacion5 = 9;
 int saturacion6 = 9;
@@ -486,7 +486,6 @@ void draw() {
 
   grafico2.push("saturacion2", valor2);
 
-
   text("Receiving:", width/2+15, 160);
   text(valor2Real, width/2+15, 175);
   if (valor2 >= 0.1) {
@@ -613,18 +612,11 @@ void draw() {
 
 void oscEvent(OscMessage theOscMessage) {
 
-// println("### RECIEVEd an osc message.");
-// println(theOscMessage); 
-
   //1 
 
   if (theOscMessage.checkAddrPattern(canal1_Input) == true && RECIEVE1 == true) {  
     valor1 = theOscMessage.get(0).floatValue();
     valor1Real = valor1;
-
-    /*exp1 = float(saturacion1)/18.864;
-     result1 = pow(10, exp1);
-     */
     result1 = saturacion1;
     if (valor1>result1) {
       valor1 = result1;
@@ -634,7 +626,6 @@ void oscEvent(OscMessage theOscMessage) {
       OscMessage mensaje1 = new OscMessage(canal1_Output);
       mensaje1.add(valor1);
       oscControl.send(mensaje1, myRemoteLocation);
-  //    println("mensajeOSC:",valor1);
     }
   }
   //2
@@ -654,18 +645,12 @@ void oscEvent(OscMessage theOscMessage) {
       OscMessage mensaje2 = new OscMessage(canal2_Output);
       mensaje2.add(valor2); 
       oscControl.send(mensaje2, myRemoteLocation);
-   //   println("mensajeOSC:",valor2);
     }
   }
   //3
   if (theOscMessage.checkAddrPattern(canal3_Input)== true  && RECIEVE3 == true) {
     valor3 = theOscMessage.get(0).floatValue();
-    //   valor3 = valor3;
     valor3Real = valor3;
-    /*
-    exp3 = float(saturacion3)/18.864;
-     result3 = pow(10, exp3);
-     */
     result3 = saturacion3;
     if (valor3>result3) {
       valor3 = result3;
@@ -676,8 +661,6 @@ void oscEvent(OscMessage theOscMessage) {
       OscMessage mensaje3 = new OscMessage(canal3_Output);
       mensaje3.add(valor3); 
       oscControl.send(mensaje3, myRemoteLocation);
-  
-
     }
   }
   //4
@@ -686,26 +669,14 @@ void oscEvent(OscMessage theOscMessage) {
     valor4 = theOscMessage.get(0).floatValue();
     valor4Real = valor4;
     result4 = saturacion4;
-    /*
-    exp4 = float(saturacion4)/18.864;
-     result4 = pow(10, exp4);
-     */
     if (valor4>result4) {
       valor4 = result4;
     }
     valor4 = valor4/result4;
-
-
     if (SEND4 == true) {
       OscMessage mensaje4 = new OscMessage(canal4_Output);
       mensaje4.add(valor4); 
       oscControl.send(mensaje4, myRemoteLocation);
-      /*
-      TableRow newRow = table.addRow();     
-       newRow.setString("millis", str(m));
-       newRow.setString("mensaje", theOscMessage.toString() + ' ' +str(valor4Real));      
-       saveTable(table, "data/new.csv");
-       */
     }
   }
 
@@ -715,9 +686,6 @@ void oscEvent(OscMessage theOscMessage) {
     valor5 = theOscMessage.get(0).floatValue();
 
     valor5Real = valor5;
-    /*
-    exp5 = float(saturacion5)/18.864;
-     result5 = pow(10, exp5); */
     result5 = saturacion5;
     valor5 = valor5/result5;
 
@@ -734,10 +702,6 @@ void oscEvent(OscMessage theOscMessage) {
     valor6 = theOscMessage.get(0).floatValue();
 
     valor6Real = valor6;
-    /*
-    exp6 = float(saturacion6)/18.864;
-     result6 = pow(10, exp6);
-     */
     result6 = saturacion5;
     valor6 = valor6/result6;
 
@@ -755,10 +719,6 @@ void oscEvent(OscMessage theOscMessage) {
     valor7 = theOscMessage.get(0).floatValue();
 
     valor7Real = valor7;
-    /*
-    exp7 = float(saturacion7)/18.864;
-     result7 = pow(10, exp7);
-     */
     result7 = saturacion7;
     valor7 = valor7/result7;
 
@@ -773,11 +733,7 @@ void oscEvent(OscMessage theOscMessage) {
     valor8 = theOscMessage.get(0).floatValue();
 
     valor8Real = valor8;
-    /*
-    exp8 = float(saturacion8)/18.864;
-     result8 = pow(10, exp8);
-     */
-     result8 = saturacion8;
+    result8 = saturacion8;
     valor8 = valor8/result8;
 
     if (SEND8 == true) {
