@@ -621,14 +621,7 @@ void oscEvent(OscMessage theOscMessage) {
   if (theOscMessage.checkAddrPattern(canal1_Input) == true && RECIEVE1 == true) {  
     valor1 = theOscMessage.get(0).floatValue();
     valor1Real = valor1;
-    // DERIVADA DE POSICIÓN 
-    /*
-X AZIMUTH 
-     Norte = -0 || 0;
-     SUR = -180 || 180;
-     ESTE = 90;
-     ESTE = -90;
-     */
+
     /*exp1 = float(saturacion1)/18.864;
      result1 = pow(10, exp1);
      */
